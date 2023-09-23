@@ -2,6 +2,7 @@ import React from 'react'
 import config from "../../config"
 import ArtSection from 'src/components/ArtSection'
 import Layout from 'src/components/Layout'
+import { getArt } from "src/services/pbService"
 
 
 export default function Index({ art }) {
@@ -19,8 +20,7 @@ export default function Index({ art }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(config.url + "/api/getImages")
-  const art = await res.json()
+  const art = await getArt()
   return{
     props: { art },
     revalidate: 60

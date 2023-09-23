@@ -2,6 +2,7 @@ import React from 'react'
 import config from '../../../config'
 import ArtSection from 'src/components/ArtSection'
 import Layout from 'src/components/Layout'
+import { getArt, getCollections } from "src/services/pbService"
 
 export default function Collection({ art, collection }) {
 
@@ -24,16 +25,10 @@ export default function Collection({ art, collection }) {
 export async function getStaticProps(ctx) {
   
     var { collection } = ctx.params
-    const imagesUrl = config.url + "/api/getImages?collection=" + collection
-    const collectionsUrl = config.url + "/api/getCollections"
 
-    const [artRes, collectionsRes] = await Promise.all([
-        fetch(imagesUrl),
-        fetch(collectionsUrl)
-    ])
     const [art, collections] = await Promise.all([
-        artRes.json(),
-        collectionsRes.json()
+        await getArt(collection),
+        await getCollections()
     ])
 
     collection = collections.find(c =>
@@ -52,9 +47,7 @@ export async function getStaticProps(ctx) {
 }
 
 export async function getStaticPaths() {
-    const url = config.url + "/api/getCollections"
-    const res = await fetch(url)
-    const data = await res.json()
+    const data = await getCollections();
     const paths = data.map((e) => ({
         params: { collection: e.handle }
     }))
