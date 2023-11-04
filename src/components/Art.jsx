@@ -15,13 +15,13 @@ export default function Art({ path, title, compact = false}) {
   }
 
   return (
-    <div>
-        <p className='mb-8 text-zinc-700 text-sm font-mono'>{title}</p>
+    <div className='inline-block max-w-[800px] h-auto'>
+        <p className='mb-8 text-zinc-700 text-md font-mono inline-block'>{title}</p>
         <Image 
             src={path}
             alt='Art by Margaux De Pauw'
             width={800}
-            height={1200}
+            height={600}
         />
     </div>
   )

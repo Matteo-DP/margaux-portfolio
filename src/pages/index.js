@@ -1,28 +1,13 @@
+import Layout from '@/components/Layout'
 import React from 'react'
-import config from "../../config"
-import ArtSection from 'src/components/ArtSection'
-import Layout from 'src/components/Layout'
-import { getArt } from "src/services/pbService"
 
-
-export default function Index({ art }) {
+export default function index() {
   return (
-    <>
-      <Layout title={"Home"} />
-      <main className='px-8 py-12'>
-        <ArtSection 
-          art={art}
-          compact={false}
-        />
-      </main>
-    </>
-  )
-}
+        <>
+            <Layout title="Home" />
+            <main className='px-8 py-12'>
 
-export async function getStaticProps() {
-  const art = await getArt()
-  return{
-    props: { art },
-    revalidate: 60
-  }
+            </main>
+        </>
+    )
 }

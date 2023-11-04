@@ -14,40 +14,43 @@ export default function Header({ collections }) {
             return router.pathname == check
         }
     }
+
+    const activeString = 'underline underline-offset-2'
+    const hoverString = 'underline'
     
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false) // Mobile menu open state
 
     return (
         <>
-            <nav className='w-56 h-screen p-12 hidden md:block'>
+            <nav className='w-56 h-screen p-12 hidden md:block text-lg text-zinc-800'>
                 <div className='fixed'>
-                    <ul className='flex flex-col gap-4 text-md'>    
-                        <li className='mb-4'>
-                            <Link href="/" className='text-2xl font-bold font-mono'>
+                    <ul className='flex flex-col gap-3 text-md text-end'>    
+                        <li className='mb-4 text-black'>
+                            <Link href="/" className='text-3xl font-bold font-mono uppercase'>
                                 Margaux 
                                 <br />
                                 De Pauw
                             </Link>
                         </li>
                         <li>
-                            <Link href="/" className={`hover:text-zinc-500 ease-in duration-75 ${checkActive("/") && "text-zinc-500"}`}>
+                            <Link href="/" className={`hover:${hoverString} ease-in duration-75 ${checkActive("/") && activeString}`}>
                                 Home
                             </Link>
                         </li>
                         <li>
-                            <Link href="/about" className={`hover:text-zinc-500 ease-in duration-75 ${checkActive("/about") && "text-zinc-500"}`}>
+                            <Link href="/about" className={`hover:${hoverString} ease-in duration-75 ${checkActive("/about") && activeString}`}>
                                 About
                             </Link>
                         </li>
                         <li>
-                            <Link href="/contact" className={`hover:text-zinc-500 ease-in duration-75 ${checkActive("/contact") && "text-zinc-500"}`}>
+                            <Link href="/contact" className={`hover:${hoverString} ease-in duration-75 ${checkActive("/contact") && activeString}`}>
                                 Contact
                             </Link>
                         </li>
-                        <ul className='flex flex-col gap-2 mt-4'>
+                        <ul className='flex flex-col gap-3 mt-4'>
                             {collections?.map((e, i) => !e.hidden &&
                                 <li key={i}>
-                                    <Link href={`/collection/${e.handle}`} className={`hover:text-zinc-500 ease-in duration-75 ${checkActive(`/collection/${e.handle}`) && "text-zinc-500"}`}>
+                                    <Link href={`/collection/${e.handle}`} className={`hover:${hoverString} ease-in duration-75 ${checkActive(`/collection/${e.handle}`) && activeString}`}>
                                         {e.name}
                                     </Link>
                                 </li>

@@ -20,16 +20,19 @@ export default function ArtSection({ art, compact = false }) {
   }
   
     return (
-        <>
+        <div 
+            className='
+                flex items-center flex-col
+                lg:items-start lg:grid lg:grid-cols-2 lg:gap-x-12 gap-y-20'
+        >
             {art.map((e, i) =>
-                <div key={i} className="mb-14">
-                    <Art
-                        path={process.env.NEXT_PUBLIC_POCKETBASE_URL + "/api/files/" + e.collectionId + "/" + e.id + "/" + e.image + "?thumb=300x300"}
-                        title={e.title}
-                        compact={compact}
-                    />
-                </div>
+                <Art
+                    key={i}
+                    path={process.env.NEXT_PUBLIC_POCKETBASE_URL + "/api/files/" + e.collectionId + "/" + e.id + "/" + e.image + "?thumb=300x300"}
+                    title={e.title}
+                    compact={compact}
+                />
             )}
-        </>
+        </div>
     )
 }

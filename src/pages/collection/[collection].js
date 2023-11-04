@@ -10,9 +10,12 @@ export default function Collection({ art, collection }) {
     <>
       <Layout title={collection.name} />
       <main className='px-8 py-12'>
-        {collection.description &&
-          <p className='mb-8 text-zinc-700 text-sm font-mono'>{collection.description}</p>
-        }
+        <div className='mb-12'>
+          <h1 className='text-4xl font-bold uppercase text-end'>{collection.name}</h1>
+          {collection.description &&
+            <p className='mt-4 text-zinc-700 text-sm font-mono text-end'>{collection.description}</p>
+          }
+        </div>
         <ArtSection 
           art={art}
           compact={collection.compact}
