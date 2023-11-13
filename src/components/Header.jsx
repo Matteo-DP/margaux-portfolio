@@ -35,24 +35,27 @@ export default function Header({ collections }) {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/about" className={`hover:text-zinc-500 ease-in duration-75 ${checkActive("/about") && "text-zinc-500"}`}>
+                            <Link href="#about" className={`hover:text-zinc-500 ease-in duration-75 ${checkActive("/about") && "text-zinc-500"}`}>
                                 About
                             </Link>
                         </li>
                         <li>
-                            <Link href="/contact" className={`hover:text-zinc-500 ease-in duration-75 ${checkActive("/contact") && "text-zinc-500"}`}>
+                            <Link href="#contact" className={`hover:text-zinc-500 ease-in duration-75 ${checkActive("/contact") && "text-zinc-500"}`}>
                                 Contact
                             </Link>
                         </li>
-                        <ul className='flex flex-col gap-2 mt-4'>
-                            {collections?.map((e, i) => !e.hidden &&
-                                <li key={i}>
-                                    <Link href={`/collection/${e.handle}`} className={`hover:text-zinc-500 ease-in duration-75 ${checkActive(`/collection/${e.handle}`) && "text-zinc-500"}`}>
-                                        {e.name}
-                                    </Link>
-                                </li>
-                            )}
-                        </ul>
+                        <li>
+                            <Link href="/exhibitions" className={`hover:text-zinc-500 ease-in duration-75 ${checkActive("/exhibitions") && "text-zinc-500"}`}>
+                                Exhibitions
+                            </Link>
+                        </li>
+                        {collections?.map((e, i) => !e.hidden &&
+                            <li key={i}>
+                                <Link href={`/collection/${e.handle}`} className={`hover:text-zinc-500 ease-in duration-75 ${checkActive(`/collection/${e.handle}`) && "text-zinc-500"}`}>
+                                    {e.name}
+                                </Link>
+                            </li>
+                        )}
                     </ul>
                 </div>
             </nav>

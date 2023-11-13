@@ -5,7 +5,7 @@ import Link from 'next/link'
 export default function MobileMenu({ isOpen, closeMenu, checkActive, collections }) {
   return (
     <Menu styles={styles} isOpen={isOpen} customBurgerIcon={false} right>
-      <ul className='flex flex-col gap-4 text-md'>
+      <ul className='text-md flex flex-col gap-6'>
         <li className='mb-4'>
             <Link href="/" className='text-2xl font-bold font-mono' onClick={() => closeMenu()}>
                 Margaux 
@@ -19,24 +19,27 @@ export default function MobileMenu({ isOpen, closeMenu, checkActive, collections
             </Link>
         </li>
         <li>
-            <Link href="/about" className={`hover:text-zinc-500 ease-in duration-75 ${checkActive("/about") && "text-zinc-500"}`} onClick={() => closeMenu()}>
+            <Link href="#about" className={`hover:text-zinc-500 ease-in duration-75 ${checkActive("/about") && "text-zinc-500"}`} onClick={() => closeMenu()}>
                 About
             </Link>
         </li>
         <li>
-            <Link href="/contact" className={`hover:text-zinc-500 ease-in duration-75 ${checkActive("/contact") && "text-zinc-500"}`} onClick={() => closeMenu()}>
+            <Link href="#contact" className={`hover:text-zinc-500 ease-in duration-75 ${checkActive("/contact") && "text-zinc-500"}`} onClick={() => closeMenu()}>
                 Contact
             </Link>
         </li>
-        <ul className='flex flex-col gap-2 mt-4'>
-            {collections?.map((e, i) => !e.hidden &&
-                <li key={i}>
-                    <Link href={`/collection/${e.handle}`} className={`hover:text-zinc-500 ease-in duration-75 ${checkActive(`/collection/${e.handle}`) && "text-zinc-500"}`} onClick={() => closeMenu()}>
-                        {e.name}
-                    </Link>
-                </li>
-            )}
-        </ul>
+        <li>
+            <Link href="/exhibitions" className={`hover:text-zinc-500 ease-in duration-75 ${checkActive("/exhibitions") && "text-zinc-500"}`} onClick={() => closeMenu()}>
+                Exhibitions
+            </Link>
+        </li>
+        {collections?.map((e, i) => !e.hidden &&
+            <li key={i}>
+                <Link href={`/collection/${e.handle}`} className={`hover:text-zinc-500 ease-in duration-75 ${checkActive(`/collection/${e.handle}`) && "text-zinc-500"}`} onClick={() => closeMenu()}>
+                    {e.name}
+                </Link>
+            </li>
+        )}
       </ul>
     </Menu>
   )

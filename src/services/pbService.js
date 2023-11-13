@@ -1,4 +1,3 @@
-import React from "react";
 import Pocketbase from 'pocketbase'
 
 const pb = new Pocketbase(
@@ -20,9 +19,10 @@ export async function getArt(collection) {
         try {
             const collectionId = collections.filter(e => e.handle == collection)[0].id
             const art = await pb.collection('art').getFullList({
-                filter: `collection = '${collectionId}'`
+                filter: `collection = '${collectionId}'`,
+                sort: 'updated',
             })
-            return JSON.parse(JSON.stringify(art))
+            return JSON.parse(JSON.stringify(art)).reverse();
         } catch {
             return { 
                 code: 404,
@@ -33,8 +33,25 @@ export async function getArt(collection) {
     } else {
         // Filter art based on empty collection, which is home page
         const art = await pb.collection('art').getFullList({
-            filter: `collection = ''`
+            filter: `collection = ''`,
+            sort: 'updated'
         })
-        return JSON.parse(JSON.stringify(art))
+        return JSON.parse(JSON.stringify(art)).reverse();
     }
+};
+
+export async function getImagesByExhibitionId(exhibitionId) {
+    const images = await pb.collection('images').getFullList({
+        filter: `exhibition = '${exhibitionId}'`,
+        sort: 'updated'
+    })
+    return JSON.parse(JSON.stringify(images))
+
+}
+
+export async function getExhibitions() {
+
+    const exhibitions = await pb.collection('exhibitions').getFullList()
+    return JSON.parse(JSON.stringify(exhibitions))
+
 }

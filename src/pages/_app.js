@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }) {
     <>
       <Script src='https://kit.fontawesome.com/2ad3ea3c29.js' crossOrigin='anonymous'></Script>
 
-      <div className='flex flex-row'>
+      <div className='flex flex-row bg-zinc-50'>
         <Header 
           collections={data}
         />
