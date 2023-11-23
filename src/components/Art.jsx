@@ -17,12 +17,12 @@ export default function Art({ path, title, compact = false}) {
   return (
     <div className='relative'>
       {title &&
-        <p className='mb-8 text-zinc-700 text-sm font-mono'>{title}</p>
+        <p className='mb-8 text-zinc-800 text-center font-quicksand'>{title}</p>
       }
       <Image
           src={path}
           alt='Art by Margaux De Pauw'
-          width={650}
+          width={600}
           height={600}
       />
     </div>

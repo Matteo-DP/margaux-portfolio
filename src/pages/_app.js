@@ -1,27 +1,17 @@
-import Header from 'src/components/Header'
 import '@/styles/tailwind.css'
-import useSWR from 'swr'
+import Header from '@/components/Header.jsx'
 import Script from 'next/script'
 
-
 export default function App({ Component, pageProps }) {
-
-  const fetcher = (url) => fetch(url).then(res => res.json())
-  const { data } = useSWR("/api/getCollections", fetcher)
- 
+  
   return(
     <>
       <Script src='https://kit.fontawesome.com/2ad3ea3c29.js' crossOrigin='anonymous'></Script>
-
-      <div className='flex flex-row bg-zinc-50'>
-        <Header 
-          collections={data}
-        />
-        <div className='w-full'>
-          <div className='block h-16 md:hidden' />
-          <Component {...pageProps} />
-        </div>
-      </div>
+      <Script src='smoothScroll.js'></Script>
+      <Header/>
+      <main className='pt-20 scroll-smooth'>
+        <Component {...pageProps} />
+      </main>
     </>
   )
 }

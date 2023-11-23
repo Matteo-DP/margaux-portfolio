@@ -2,40 +2,26 @@ import React from 'react'
 import { slide as Menu } from 'react-burger-menu'
 import Link from 'next/link'
 
-export default function MobileMenu({ isOpen, closeMenu, checkActive, collections }) {
+export default function MobileMenu({ isOpen, closeMenu, items, collections }) {
   return (
     <Menu styles={styles} isOpen={isOpen} customBurgerIcon={false} right>
-      <ul className='text-md flex flex-col gap-6'>
-        <li className='mb-4'>
-            <Link href="/" className='text-2xl font-bold font-mono' onClick={() => closeMenu()}>
-                Margaux 
-                <br />
-                De Pauw
+      <ul className='text-md'>
+        <li className='mb-4 font-quicksand'>
+            <Link href="/" className='text-2xl' onClick={() => closeMenu()}>
+                Margaux De Pauw
             </Link>
         </li>
-        <li>
-            <Link href="/" className={`hover:text-zinc-500 ease-in duration-75 ${checkActive("/") && "text-zinc-500"}`} onClick={() => closeMenu()}>
-                Home
-            </Link>
-        </li>
-        <li>
-            <Link href="#about" className={`hover:text-zinc-500 ease-in duration-75 ${checkActive("/about") && "text-zinc-500"}`} onClick={() => closeMenu()}>
-                About
-            </Link>
-        </li>
-        <li>
-            <Link href="#contact" className={`hover:text-zinc-500 ease-in duration-75 ${checkActive("/contact") && "text-zinc-500"}`} onClick={() => closeMenu()}>
-                Contact
-            </Link>
-        </li>
-        <li>
-            <Link href="/exhibitions" className={`hover:text-zinc-500 ease-in duration-75 ${checkActive("/exhibitions") && "text-zinc-500"}`} onClick={() => closeMenu()}>
-                Exhibitions
-            </Link>
-        </li>
+        {items.map((item) =>
+          item.handle &&
+            <li key={item.handle}>
+                <Link href={item.handle} className='hover:text-zinc-500 ease-in duration-75 mt-4' onClick={() => closeMenu()}>
+                    {item.title}
+                </Link>
+            </li>
+        )}
         {collections?.map((e, i) => !e.hidden &&
             <li key={i}>
-                <Link href={`/collection/${e.handle}`} className={`hover:text-zinc-500 ease-in duration-75 ${checkActive(`/collection/${e.handle}`) && "text-zinc-500"}`} onClick={() => closeMenu()}>
+                <Link href={`/collection/${e.handle}`} className='hover:text-zinc-500 ease-in duration-7 uppercase mt-4' onClick={() => closeMenu()}>
                     {e.name}
                 </Link>
             </li>
@@ -77,15 +63,6 @@ var styles = {
     },
     bmMorphShape: {
       fill: '#373a47'
-    },
-    bmItemList: {
-        padding: '0.8em',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '0.75em'
-    },
-    bmItem: {
-      display: 'inline-block'
     },
     bmOverlay: {
       background: 'rgba(0, 0, 0, 0.3)'

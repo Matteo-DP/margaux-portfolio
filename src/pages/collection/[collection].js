@@ -1,7 +1,6 @@
 import React from 'react'
-import config from '../../../config'
-import ArtSection from 'src/components/ArtSection'
-import Layout from 'src/components/Layout'
+import ArtSection from '@/components/ArtSection'
+import Layout from '@/components/Layout'
 import { getArt, getCollections } from "src/services/pbService"
 
 export default function Collection({ art, collection }) {

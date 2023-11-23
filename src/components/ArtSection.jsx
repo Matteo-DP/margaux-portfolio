@@ -1,5 +1,5 @@
 import React from 'react'
-import Art from 'src/components/Art'
+import Art from '@/components/Art'
 
 export default function ArtSection({ art, compact = false }) {
   
@@ -21,17 +21,19 @@ export default function ArtSection({ art, compact = false }) {
     }
   
     return (
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-16'>
-            {art.map((e, i) =>
-                !e.hidden &&
-                    <div key={i}>
-                        <Art
-                            path={process.env.NEXT_PUBLIC_POCKETBASE_URL + "/api/files/" + e.collectionId + "/" + e.id + "/" + e.image + "?thumb=300x300"}
-                            title={e.title}
-                            compact={compact}
-                        />
-                    </div>
-            )}
+        <div className='w-full flex justify-center'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-12'>
+                {art.map((e, i) =>
+                    !e.hidden &&
+                        <div key={i}>
+                            <Art
+                                path={process.env.NEXT_PUBLIC_POCKETBASE_URL + "/api/files/" + e.collectionId + "/" + e.id + "/" + e.image + "?thumb=300x300"}
+                                title={e.title}
+                                compact={compact}
+                            />
+                        </div>
+                )}
+            </div>
         </div>
     )
 }

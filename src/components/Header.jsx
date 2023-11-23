@@ -1,75 +1,116 @@
-import React, { useState, useContext } from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import MobileMenu from 'src/components/MobileMenu'
+import React, { useState, useEffect } from 'react'
+import Link  from 'next/link'
+import MobileMenu from '@/components/MobileMenu'
 
-export default function Header({ collections }) {
-
-    const router = useRouter()
-    const slug = router.query.collection
-    const checkActive = (check) => {
-        if(slug) {
-            return check == `/collection/${slug}`
-        } else {
-            return router.pathname == check
-        }
+const items = 
+[
+    {
+        title: 'HOME',
+        handle: '/'
+    },
+    {
+        title: 'ABOUT',
+        handle: '/#about'
+    },
+    {
+        title: 'CONTACT',
+        handle: '/#contact'
+    },
+    {
+        title: 'WORKS',
+        handle: undefined
+    },
+    {
+        title: 'EXHIBITIONS',
+        handle: '/exhibitions'
     }
-    
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false) // Mobile menu open state
+]
+
+const NavItem = ({item, collections}) => {
+
+    if(item.handle === undefined) return (
+        <div className='text-zinc-500 tracking-wide relative group cursor-pointer hover:text-red-400 transition-colors duration-300 font-quicksand'>
+            {item.title}
+            <WorksMenu collections={collections} />
+        </div>
+    )
 
     return (
-        <>
-            <nav className='w-56 h-screen p-12 hidden md:block'>
-                <div className='fixed'>
-                    <ul className='flex flex-col gap-4 text-md'>    
-                        <li className='mb-4'>
-                            <Link href="/" className='text-2xl font-bold font-mono'>
-                                Margaux 
-                                <br />
-                                De Pauw
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/" className={`hover:text-zinc-500 ease-in duration-75 ${checkActive("/") && "text-zinc-500"}`}>
-                                Home
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="#about" className={`hover:text-zinc-500 ease-in duration-75 ${checkActive("/about") && "text-zinc-500"}`}>
-                                About
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="#contact" className={`hover:text-zinc-500 ease-in duration-75 ${checkActive("/contact") && "text-zinc-500"}`}>
-                                Contact
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="/exhibitions" className={`hover:text-zinc-500 ease-in duration-75 ${checkActive("/exhibitions") && "text-zinc-500"}`}>
-                                Exhibitions
-                            </Link>
-                        </li>
-                        {collections?.map((e, i) => !e.hidden &&
-                            <li key={i}>
-                                <Link href={`/collection/${e.handle}`} className={`hover:text-zinc-500 ease-in duration-75 ${checkActive(`/collection/${e.handle}`) && "text-zinc-500"}`}>
-                                    {e.name}
-                                </Link>
-                            </li>
-                        )}
-                    </ul>
-                </div>
-            </nav>
+        <div className='text-zinc-500 tracking-wider hover:text-red-400 transition-colors duration-300 font-quicksand'>
+            <Link href={item.handle} key={item.handle}>
+                {item.title}
+            </Link>
+        </div>
+    )
+}
 
-            <MobileMenu isOpen={mobileMenuOpen} closeMenu={() => setMobileMenuOpen(false)} checkActive={checkActive} collections={collections} />
-            <nav className='fixed md:hidden w-full py-6 px-8'>
+const WorksMenu = ({ collections }) => {
+    if(collections) return (
+        <div>
+            <div className={`z-10 absolute top-8 -left-10 w-max invisible group-hover:visible bg-zinc-50 shadow-sm h-auto max-h-0 group-hover:max-h-[1000px] group-hover:max-h transition-all ease-in duration-500 overflow-hidden`}>
+                <div className='flex flex-col gap-4 px-8 py-4 uppercase tracking-wider text-zinc-700'>
+                    {collections.map((c) =>
+                        c.hidden ? null :
+                            <Link href={`/collection/${c.handle}`} key={c.handle} className='hover:text-red-400 duration-300 transition-colors'>
+                                {c.name}
+                            </Link>
+                    )}
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default function Header() {
+
+    const [collections, setCollections] = useState(undefined);
+    const [initialLoad, setInitialLoad] = useState(false);
+    const [reFetch, setReFetch] = useState(0);
+    useEffect(() => {
+        const fetchCollections = async () => {
+            const res = await fetch('/api/getCollections');
+            const collections = await res.json();
+            setCollections(collections);
+            setInitialLoad(true);
+        }
+        fetchCollections();
+    }, [reFetch])
+
+    if(initialLoad && collections === undefined) {
+        setReFetch(reFetch + 1);
+    }
+
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false) // Mobile menu open state
+    
+    return (
+        <>
+            <div className='w-full fixed z-10 bg-zinc-100 hidden md:block'>
+                <div className='flex flex-row justify-center px-8 py-6'>
+                    <nav className='max-w-7xl flex flex-row gap-8 items-baseline'>
+                        {items.map((item) =>
+                            <NavItem item={item} key={item.handle} collections={collections} />
+                        )}
+                        <p className='text-2xl'>
+                            <Link href="/">
+                                Margaux De Pauw
+                            </Link>
+                        </p>
+                    </nav>
+                </div>
+            </div>
+
+            <MobileMenu isOpen={mobileMenuOpen} closeMenu={() => setMobileMenuOpen(false)} items={items} collections={collections} />
+            <nav className='fixed md:hidden w-full py-6 px-8 z-10 bg-zinc-100'>
                 <ul className='flex flex-row justify-between gap-4'>
-                    <Link href="/" className='text-xl font-bold font-mono'>
+                    <Link href="/" className='text-2xl'>
                         Margaux De Pauw
                     </Link>
                     {/* Mobile menu icon */}
                     <li className='block md:hidden'>
-                        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                            <i className="fa-solid fa-bars fa-2xl"></i>
+                        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-zinc-900">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 50 50">
+                            <path d="M 0 9 L 0 11 L 50 11 L 50 9 Z M 0 24 L 0 26 L 50 26 L 50 24 Z M 0 39 L 0 41 L 50 41 L 50 39 Z"></path>
+                            </svg>
                         </button>
                     </li>
                 </ul>
