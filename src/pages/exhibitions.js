@@ -20,6 +20,7 @@ export async function getStaticProps(ctx) {
 
     const exhibitions = await getExhibitions();
     return {
-        props: { exhibitions, revalidate: 60 }
+        props: { exhibitions }, 
+        revalidate: 60
     }
 }

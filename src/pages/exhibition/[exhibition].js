@@ -80,7 +80,8 @@ export async function getStaticProps(ctx) {
     const images = await getImagesByExhibitionId(exhibition.id)
     
     return {
-        props: { exhibition, images, revalidate: 60 }
+        props: { exhibition, images },
+        revalidate: 60
     }
 
 }
