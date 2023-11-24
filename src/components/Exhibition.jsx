@@ -22,7 +22,7 @@ export default function Exhibition({ exhibition }) {
                 width={400}
                 height={400}
                 placeholder="blur"
-                blurDataURL={`/_next/image?url=${path}&w=1&q=1`}
+                blurDataURL={`/_next/image?url=${process.env.NEXT_PUBLIC_POCKETBASE_URL + "/api/files/" + exhibition.collectionId + "/" + exhibition.id + "/" + exhibition.folder + "?thumb=300x300"}&w=1&q=1`}
             />
             <div className='absolute top-0 left-0 w-full h-full bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-200'></div>
           </div>
