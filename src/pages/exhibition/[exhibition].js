@@ -34,7 +34,7 @@ const ImagesSection = ({ images }) => {
 export default function _Exhibition({ exhibition, images }) {
   return (
     <>
-        <Layout title={exhibition.handle}/>
+        <Layout title={exhibition.title}/>
         <main className='px-8 py-12'>
             <div className='justify-center flex w-full'>
                 <div className='max-w-7xl w-full'>
