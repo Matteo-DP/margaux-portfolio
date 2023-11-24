@@ -55,7 +55,7 @@ export default function Home() {
               INSTRAGRAM: 
             </p>
             <a className='inline text-red-400 underline underline-offset-1' href="https://www.instagram.com/marchieff/" target='_blank' rel='noreferrer'>
-              @marchieff
+              @margaux.depauww
             </a>
           </div>
           <div className='px-4'>
