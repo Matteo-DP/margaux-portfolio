@@ -1,6 +1,7 @@
 import '@/styles/tailwind.css'
 import Header from '@/components/Header.jsx'
 import Script from 'next/script'
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App({ Component, pageProps }) {
   
@@ -12,6 +13,7 @@ export default function App({ Component, pageProps }) {
       <main className='pt-20 scroll-smooth'>
         <Component {...pageProps} />
       </main>
+      <Analytics />
     </>
   )
 }

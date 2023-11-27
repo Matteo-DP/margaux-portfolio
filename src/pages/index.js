@@ -2,8 +2,6 @@ import React from 'react'
 import Layout from '@/components/Layout'
 import Image from 'next/image'
 
-// Fix on mobile
-
 export default function Home() {
 
   return(
