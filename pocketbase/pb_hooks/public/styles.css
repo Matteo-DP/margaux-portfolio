@@ -1,0 +1,33 @@
+.art-img__container {
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.art-img {
+    width: 60px;
+    height: auto;
+}
+
+.art-container {
+    list-style: none;
+    width: max-content;
+}
+
+.art-container__inner {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+    max-width: 600px;
+}
+
+.placeholder {
+    border-style: dashed;
+    border-width: 1px;
+    border-color: rgb(150, 150, 150);
+    height: 60px;
+}

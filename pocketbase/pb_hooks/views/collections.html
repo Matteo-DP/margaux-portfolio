@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort collections</title>
+    <link rel="stylesheet" href="{{$.pocketbaseUrl}}/public/collections-styles.css">
+  </head>
+  <body data-pocketbase-url="{{$.pocketbaseUrl}}">
+    <h1 class="title"> Sort collections </h1>
+    <ul class="collection-list">
+        {{ range .collections }}
+            <li class="collection-container">
+                <a class="collection" href="/sort/{{ .Handle }}">
+                    {{ .Name }}
+                </a>
+            </li>
+        {{ end }}
+    </ul>
+</body>
+</html>

@@ -20,9 +20,9 @@ export async function getArt(collection) {
             const collectionId = collections.filter(e => e.handle == collection)[0].id
             const art = await pb.collection('art').getFullList({
                 filter: `collection = '${collectionId}'`,
-                sort: 'updated',
+                sort: 'sort',
             })
-            return JSON.parse(JSON.stringify(art)).reverse();
+            return JSON.parse(JSON.stringify(art));
         } catch {
             return { 
                 code: 404,
@@ -31,13 +31,17 @@ export async function getArt(collection) {
         }
 
     } else {
-        // Filter art based on empty collection, which is home page
-        const art = await pb.collection('art').getFullList({
-            filter: `collection = ''`,
-            sort: 'updated'
-        })
-        return JSON.parse(JSON.stringify(art)).reverse();
+        return undefined;
     }
+    // Unused feature
+    // else {
+    //     // Filter art based on empty collection, which is home page
+    //     const art = await pb.collection('art').getFullList({
+    //         filter: `collection = ''`,
+    //         sort: 'sort'
+    //     })
+    //     return JSON.parse(JSON.stringify(art)).reverse();
+    // }
 };
 
 export async function getImagesByExhibitionId(exhibitionId) {

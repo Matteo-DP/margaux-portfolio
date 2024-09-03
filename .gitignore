@@ -32,4 +32,7 @@ yarn-error.log*
 .vercel
 
 # pocketbase
-/pocketbase
+/pocketbase/pb_migrations
+/pocketbase/pb_data
+/pocketbase/*.db
+/pb_backups

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort {{ .collectionName }}</title>
+    <link rel="stylesheet" href="{{$.pocketbaseUrl}}/public/styles.css">
+  </head>
+  <body data-pocketbase-url="{{$.pocketbaseUrl}}">
+    <h1 class="title"> Sort {{ .collectionName }} </h1>
+    <div class="sortable-list">
+      <ul class="art-container" id="sortable">
+          {{ range .artArray }}
+            <li class="art-container__inner" draggable="true">
+              {{ if gt .Sort 9 }}
+                <p class="art-id" data-img-id="{{.Id}}">{{.Sort}}</p>
+              {{ else }}
+                <p class="art-id" data-img-id="{{.Id}}">{{.Sort}} &nbsp;</p>
+              {{ end }}
+              <div class="art-img__container">
+                <img class="art-img" draggable="false" src="{{$.pocketbaseUrl}}/api/files/art/{{.Id}}/{{.Image}}?thumb=60x60">
+              </div>
+              <p class="art-title" draggable="false">{{ .Title }}</p>
+            </li>
+          {{ end }}
+      </ul>
+    </div>
+    <script src="{{$.pocketbaseUrl}}/public/drag.js"></script>
+  </body>
+</html>
