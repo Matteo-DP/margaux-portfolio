@@ -8,5 +8,5 @@ const urlFromEnv = (env) => {
 }
 
 module.exports = {
-    "pocketbaseUrl": urlFromEnv("development"),
+    "pocketbaseUrl": urlFromEnv("production"),
 }

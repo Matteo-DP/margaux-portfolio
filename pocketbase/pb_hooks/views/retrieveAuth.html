@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirecting...</title>
+    <script>
+        window.onload = () => {
+            const tokenObject = JSON.parse(localStorage.getItem('pb_admin_auth'));
+            const token = tokenObject.token;
+            console.log(tokenObject);
+            console.log(token);
+            const urlParams = new URLSearchParams(window.location.search);
+            const redirect = urlParams.get('redirect');
+
+            if (!token) {
+                window.location.href = `${window.location.origin}/_/#/login`;
+            } else {
+                window.location.href = `${window.location.origin}${redirect}?token=${token}`; // redirect includes prefix slash
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Redirecting...</h1>
+</body>
+</html>

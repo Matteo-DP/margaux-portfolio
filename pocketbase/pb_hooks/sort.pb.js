@@ -1,7 +1,5 @@
 // https://pocketbase.io/docs/js-overview/
 
-const { pocketbaseUrl } = require("./config");
-
 // Hook that triggers before new model is uploaded
 // This hook will add a sort value to the model
 onModelBeforeCreate((e) => {
@@ -46,22 +44,34 @@ onModelBeforeCreate((e) => {
 }, "art"); // ONly fires for art collection
 
 // Custom middleware
-function requireAdminWithRedirect(next) {
+// Check if theres an admin token in header
+// if not, redirect to a custom page that sets the header token from localStorage
+function requireTokenWithRedirect(next) {
     return c => {
-        try {
-            const info = $apis.requestInfo(c); // read cache
-            const isAdmin = info.admin
-            //const isAdmin = c.get("admin"); // Empty object when is not admin
-            if (!isAdmin) {
-                return c.redirect(307, "/_/#/login")
-            } else {
-                return next(c)
+        const token = c.queryParam("token");
+        if (token) {
+            // c.request().header.set("Authorization", token);
+            // console.log(JSON.stringify($apis.requestInfo(c)))
+            // return next(c);
+            try {
+                $app.dao().findAdminByToken(token, $app.settings().adminAuthToken.secret);
+            } catch(e) {
+                console.error(e);
+                return c.json(401, { message: "Invalid authorization header" });
             }
-        } catch (e) {
-            return $apis.requireAdminAuth();
+            return next(c);
         }
+        return c.redirect(307, `retrieveAuth?redirect=${c.request().url}`);
     };
 }
+
+routerAdd("GET", "/retrieveAuth", (c) => {
+    const html = $template.loadFiles(
+        `${__hooks}/views/retrieveAuth.html`
+    )
+        .render();
+    return c.html(200, html);
+});
 
 // Middleware to check if collection exists
 // Should cache this
@@ -167,7 +177,7 @@ routerAdd("GET", "/collections", (c) => {
         pocketbaseUrl: pocketbaseUrl,
     });
     return c.html(200, html);
-})
+}, requireTokenWithRedirect);
 
 // avoid conflicts with default /api/* routes
 routerAdd("PATCH", "/sortApi/", (c) => {

@@ -1,0 +1,27 @@
+.collection-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+}
+
+.collection-list .collection {
+    display: flex;
+}
+
+.collection-list .collection {
+    padding: 16px 10px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    width: 300px;
+    border: 1px solid #e0e0e0;
+}
+
+.collection-list .collection:hover {
+    background-color: #e0e0e0;
+}
+
+.collection {
+    text-decoration: none;
+    color: black;
+}
