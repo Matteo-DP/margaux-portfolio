@@ -5,7 +5,7 @@
     <script>
         window.onload = () => {
             const tokenObject = JSON.parse(localStorage.getItem('pb_admin_auth'));
-            const token = tokenObject.token;
+            const token = tokenObject?.token;
             console.log(tokenObject);
             console.log(token);
             const urlParams = new URLSearchParams(window.location.search);

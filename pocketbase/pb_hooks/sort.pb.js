@@ -61,7 +61,7 @@ function requireTokenWithRedirect(next) {
             }
             return next(c);
         }
-        return c.redirect(307, `retrieveAuth?redirect=${c.request().url}`);
+        return c.redirect(307, `/retrieveAuth?redirect=${c.request().url}`);
     };
 }
 
@@ -155,7 +155,7 @@ routerAdd("GET", "/sort/:collection", (c) => {
         });
 
     return c.html(200, html);
-}, checkCollection);
+}, checkCollection, requireTokenWithRedirect);
 
 routerAdd("GET", "/collections", (c) => {
     const result = arrayOf(new DynamicModel({
@@ -209,6 +209,6 @@ routerAdd("PATCH", "/sortApi/", (c) => {
         // Assume bad request on error (lmao)
         throw new BadRequestError();
     }
-})
+}, $apis.requireAdminAuth())
 
 routerAdd("GET", "/public/*", $apis.staticDirectoryHandler(`${__hooks}/public/`, false))

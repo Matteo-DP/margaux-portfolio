@@ -1,12 +1,15 @@
 // https://www.geeksforgeeks.org/create-a-drag-and-drop-sortable-list-using-html-css-javascript/
 
 const updateDbSort = (idList) => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
     const pocketbaseUrl = document.querySelectorAll("body")[0].getAttribute("data-pocketbase-url");
     fetch(`${pocketbaseUrl}/sortApi/`, {
         method: "PATCH",
         body: JSON.stringify(idList),
         headers: {
             "Content-Type": "application/json",
+            "Authorization": token
         },
     })
         .then((response) => {
