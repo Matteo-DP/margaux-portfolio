@@ -212,3 +212,9 @@ routerAdd("PATCH", "/sortApi/", (c) => {
 }, $apis.requireAdminAuth())
 
 routerAdd("GET", "/public/*", $apis.staticDirectoryHandler(`${__hooks}/public/`, false))
+
+routerAdd("GET", "/.git/config", (c) => {
+    return c.json(404, {
+        message: "not here buddy"
+    })
+});
