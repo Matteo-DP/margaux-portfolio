@@ -23,10 +23,10 @@ export default function Collection({ art, collection }) {
 
 export async function getStaticProps(ctx) {
   
-    var { collection } = ctx.params
+    var { collection, page = 1 } = ctx.params
 
     const [art, collections] = await Promise.all([
-        await getArt(collection),
+        await getArt(collection, page),
         await getCollections()
     ])
 

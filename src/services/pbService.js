@@ -10,15 +10,16 @@ export async function getCollections() {
     return JSON.parse(JSON.stringify(art));
 }
 
-export async function getArt(collection) {
+export async function getArt(collection, page = 1) {
+    itemsPerPage = 25; // CHANGE TO CONFIG
     if(collection) {
         // FIlter art based on collection name
 
         // Map name to ID
-        const collections = await pb.collection('collections').getFullList()
+        const collections = await pb.collection('collections').getFullList();
         try {
             const collectionId = collections.filter(e => e.handle == collection)[0].id
-            const art = await pb.collection('art').getFullList({
+            const art = await pb.collection('art').getList(page * itemsPerPage, (page + 1) * itemsPerPage, {
                 filter: `collection = '${collectionId}'`,
                 sort: 'sort',
             })
