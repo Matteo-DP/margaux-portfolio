@@ -9,7 +9,7 @@ export default function Home() {
       <Layout title={"Home"} />
       <div className='flex justify-center p-4 h-[90vh] items-center'>
         <Image 
-          src="/index_images/image1.jpeg"
+          src="/index_images/image1.jpg"
           alt="Hero"
           width={1000}
           height={400}
@@ -39,7 +39,7 @@ export default function Home() {
       </div>
       <div className='justify-center flex mb-32 p-4'>
         <Image 
-          src="/index_images/image2.jpeg"
+          src="/index_images/image2.jpg"
           alt="Hero"
           width={400}
           height={400}
@@ -54,10 +54,10 @@ export default function Home() {
               0493 79 36 56
             </p>
             <p>
-              KASK kunsttoren
+              Villa Vonk
             </p>
             <p>
-              Offerlaan 5
+              Oudernaardsesteenweg 52
             </p>
             <p className='mb-4'>
               9000 Gent
@@ -66,8 +66,8 @@ export default function Home() {
               <i className="fa-brands fa-instagram mr-2"></i>
               INSTRAGRAM: 
             </p>
-            <a className='inline text-red-400 underline underline-offset-1' href="https://www.instagram.com/marchieff/" target='_blank' rel='noreferrer'>
-              @margaux.depauww
+            <a className='inline text-red-400 underline underline-offset-1' href="https://www.instagram.com/marchiefff/" target='_blank' rel='noreferrer'>
+              @marchiefff
             </a>
           </div>
           <div className='px-4'>
