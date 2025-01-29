@@ -4,7 +4,8 @@ const nextConfig = {
   images: {
     domains: [
       "127.0.0.1",
-      "mxpb.matteodepauw.software"
+      "178.62.204.252",
+      "pb.margauxdepauw.com"
     ]
   },
 }

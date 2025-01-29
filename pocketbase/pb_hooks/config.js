@@ -1,6 +1,6 @@
 const urlFromEnv = (env) => {
     if (env === 'production') {
-        return 'https://mxpb.matteodepauw.software'
+        return 'https://pb.margauxdepauw.com'
     } else if (env === 'preview') {
         return 'http://178.62.204.252:8080' // digital ocean server
     }
