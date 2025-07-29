@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '@/components/Layout'
 import Image from 'next/image'
+import WorksListSection from '@/components/WorksListSection'
 
 export default function Home() {
 
@@ -17,7 +18,8 @@ export default function Home() {
       </div>
       <div className='flex justify-center mb-32 px-8 pt-32' id="about">
         <div className='max-w-[1000px]'>
-          <p className='text-zinc-800 text-4xl mb-4'>About</p>
+          <WorksListSection />
+          <p className='text-zinc-800 text-4xl mb-4 mt-24'>About</p>
           <p className='font-quicksand text-zinc-700 text-justify inline-block first-letter:text-2xl first-letter:text-red-400'>
             Margaux De Pauw is a painter who works with oil on canvas or paper. 
             She paints imaginary landscapes composed from compositions she finds in everyday life. 
@@ -64,7 +66,7 @@ export default function Home() {
             </p>
             <p className='inline mr-2'>
               <i className="fa-brands fa-instagram mr-2"></i>
-              INSTRAGRAM: 
+              INSTAGRAM: 
             </p>
             <a className='inline text-red-400 underline underline-offset-1' href="https://www.instagram.com/marchiefff/" target='_blank' rel='noreferrer'>
               @marchiefff

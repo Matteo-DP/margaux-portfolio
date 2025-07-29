@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Link  from 'next/link'
 import MobileMenu from '@/components/MobileMenu'
+import { CollectionsContext } from '@/pages/_app'
 
 const items = 
 [
@@ -63,22 +64,7 @@ const WorksMenu = ({ collections }) => {
 
 export default function Header() {
 
-    const [collections, setCollections] = useState(undefined);
-    const [initialLoad, setInitialLoad] = useState(false);
-    const [reFetch, setReFetch] = useState(0);
-    useEffect(() => {
-        const fetchCollections = async () => {
-            const res = await fetch('/api/getCollections');
-            const collections = await res.json();
-            setCollections(collections);
-            setInitialLoad(true);
-        }
-        fetchCollections();
-    }, [reFetch])
-
-    if(initialLoad && collections === undefined) {
-        setReFetch(reFetch + 1);
-    }
+    const collections = useContext(CollectionsContext);
 
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false) // Mobile menu open state
     
