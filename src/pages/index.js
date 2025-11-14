@@ -56,10 +56,10 @@ export default function Home() {
               0493 79 36 56
             </p>
             <p>
-              Villa Vonk
+              Kunsttoren
             </p>
             <p>
-              Oudernaardsesteenweg 52
+              Offerlaan 5
             </p>
             <p className='mb-4'>
               9000 Gent
@@ -69,7 +69,7 @@ export default function Home() {
               INSTAGRAM: 
             </p>
             <a className='inline text-red-400 underline underline-offset-1' href="https://www.instagram.com/marchiefff/" target='_blank' rel='noreferrer'>
-              @marchiefff
+              @margaux.img
             </a>
           </div>
           <div className='px-4'>
