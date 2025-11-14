@@ -68,7 +68,7 @@ export default function Home() {
               <i className="fa-brands fa-instagram mr-2"></i>
               INSTAGRAM: 
             </p>
-            <a className='inline text-red-400 underline underline-offset-1' href="https://www.instagram.com/marchiefff/" target='_blank' rel='noreferrer'>
+            <a className='inline text-red-400 underline underline-offset-1' href="https://www.instagram.com/margaux.img/" target='_blank' rel='noreferrer'>
               @margaux.img
             </a>
           </div>
