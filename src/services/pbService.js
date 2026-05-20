@@ -1,7 +1,7 @@
 import Pocketbase from 'pocketbase'
 
 const pb = new Pocketbase(
-    process.env.NEXT_PUBLIC_POCKETBASE_URL,
+    process.env.NEXT_PUBLIC_POCKETBASE_URL || "http://localhost:8090",
 )
 
 export async function getCollections() {        
@@ -55,7 +55,9 @@ export async function getImagesByExhibitionId(exhibitionId) {
 
 export async function getExhibitions() {
 
-    const exhibitions = await pb.collection('exhibitions').getFullList()
+    const exhibitions = (await pb.collection('exhibitions').getFullList({
+        sort: 'created'
+    }))
     return JSON.parse(JSON.stringify(exhibitions))
 
 }
