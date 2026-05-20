@@ -57,7 +57,7 @@ export async function getExhibitions() {
 
     const exhibitions = (await pb.collection('exhibitions').getFullList({
         sort: 'created'
-    }))
+    })).reverse();
     return JSON.parse(JSON.stringify(exhibitions))
 
 }
