@@ -21,7 +21,7 @@ export default function Home() {
           <WorksListSection />
           <p className='text-zinc-800 text-4xl mb-4 mt-24'>About</p>
           <p className='font-quicksand text-zinc-700 text-justify inline-block first-letter:text-2xl first-letter:text-red-400'>
-            Margaux De Pauw is a painter who works with oil on canvas or paper. 
+            {/* Margaux De Pauw is a painter who works with oil on canvas or paper. 
             She paints imaginary landscapes composed from compositions she finds in everyday life. 
             Here, direction and line play are very important. 
             So walking, sketching and taking photos are definitely a crucial part of her creative process. 
@@ -35,7 +35,12 @@ export default function Home() {
             A quest to recreate a landscape in a way that breaks through space. 
             It is important that she can put her fascination with the world onto canvas. 
             Nature and human intervention on nature are Margaux&apos;s greatest sources of inspiration. 
-            For her, painting is a way of understanding the world.
+            For her, painting is a way of understanding the world. */}
+            Through a process of rapid gestures, layering, and reworking, Margaux (Ghent, 2003) constructs spaces that continuously expand, shift, and unfold.
+            Depth plays a central role in her work: it is suggested, disrupted, and rebuilt, drawing the viewer into environments that feel both immersive and unstable. 
+            Forms move between the recognizable and the abstract, creating multiple readings and shifting points of view. 
+            Her paintings evoke spaces within spaces, where movement and spatial tension remain in constant flux. 
+            Rather than describing a place, they explore how space can be experienced and imagined.
           </p>
         </div>
       </div>
@@ -55,14 +60,8 @@ export default function Home() {
             <p>
               0493 79 36 56
             </p>
-            <p>
-              Kunsttoren
-            </p>
-            <p>
-              Offerlaan 5
-            </p>
             <p className='mb-4'>
-              9000 Gent
+              9000 Ghent
             </p>
             <p className='inline mr-2'>
               <i className="fa-brands fa-instagram mr-2"></i>
