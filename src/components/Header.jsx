@@ -29,12 +29,22 @@ const items =
 
 const NavItem = ({item, collections}) => {
 
-    if(item.handle === undefined) return (
-        <div className='text-zinc-500 tracking-wide relative group cursor-pointer hover:text-red-400 transition-colors duration-300 font-quicksand'>
-            {item.title}
-            <WorksMenu collections={collections} />
-        </div>
-    )
+    if(item.handle === undefined) {
+        if (collections.length == 1) {
+            return (
+                <Link href={`/collection/${collections[0].handle}`} className='text-zinc-500 tracking-wide relative group cursor-pointer hover:text-red-400 transition-colors duration-300 font-quicksand'>
+                    {item.title}
+                </Link>
+            )
+        } else {
+            return (
+                <div className='text-zinc-500 tracking-wide relative group cursor-pointer hover:text-red-400 transition-colors duration-300 font-quicksand'>
+                    {item.title}
+                    <WorksMenu collections={collections} />
+                </div>
+            )
+        }
+    }
 
     return (
         <div className='text-zinc-500 tracking-wider hover:text-red-400 transition-colors duration-300 font-quicksand'>
